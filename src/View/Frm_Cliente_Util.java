@@ -216,7 +216,7 @@ public class Frm_Cliente_Util extends javax.swing.JFrame {
 
         jLabel11.setText("Bairro:");
 
-        jLabel12.setText("Numero:");
+        jLabel12.setText("Número:");
 
         jLabel13.setText("Complemento:");
 
@@ -298,7 +298,7 @@ public class Frm_Cliente_Util extends javax.swing.JFrame {
 
         jLabel17.setText("Bairro:");
 
-        jLabel18.setText("Numero:");
+        jLabel18.setText("Número:");
 
         jLabel19.setText("Complemento:");
 

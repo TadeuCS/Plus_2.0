@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package View;
+
+import Controller.ProdutoEJB;
+import Model.Produto;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,11 +15,15 @@ package View;
  */
 public class Frm_Produto_Util extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Frm_Produto_Util
-     */
+    ProdutoEJB produtoEJB = new ProdutoEJB();
+    private Produto produto;
+
     public Frm_Produto_Util() {
         initComponents();
+        if(this.getTitle().compareTo("Alteração")==0){
+            txt_descricao.setText(produto.getDescricao());
+            txt_referencia.setText(produto.getReferencia());
+        }
     }
 
     /**
@@ -32,7 +39,6 @@ public class Frm_Produto_Util extends javax.swing.JFrame {
         pnl_botoes = new javax.swing.JPanel();
         btn_salvar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
-        operacao = new javax.swing.JLabel();
         pnl_dados = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -45,8 +51,18 @@ public class Frm_Produto_Util extends javax.swing.JFrame {
         pnl_botoes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btn_salvar.setText("Salvar");
+        btn_salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salvarActionPerformed(evt);
+            }
+        });
 
         btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_botoesLayout = new javax.swing.GroupLayout(pnl_botoes);
         pnl_botoes.setLayout(pnl_botoesLayout);
@@ -55,9 +71,7 @@ public class Frm_Produto_Util extends javax.swing.JFrame {
             .addGroup(pnl_botoesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(operacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -67,8 +81,7 @@ public class Frm_Produto_Util extends javax.swing.JFrame {
                 .addGap(2, 2, 2)
                 .addGroup(pnl_botoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_cancelar)
-                    .addComponent(btn_salvar)
-                    .addComponent(operacao, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_salvar))
                 .addGap(2, 2, 2))
         );
 
@@ -148,6 +161,34 @@ public class Frm_Produto_Util extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
+        if (this.getTitle().compareTo("Cadastro") == 0) {
+            produto.setDescricao(txt_descricao.getText());
+            produto.setReferencia(txt_referencia.getText());
+            produto.setDisponivel("S");
+            try {
+                produtoEJB.salvar(produto);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }
+        if (this.getTitle().compareTo("Alteração") == 0) {
+            produto.setDescricao(txt_descricao.getText());
+            produto.setReferencia(txt_referencia.getText());
+            try {
+                produtoEJB.alterar(produto);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_btn_salvarActionPerformed
+
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+        txt_descricao.setText(null);
+        txt_referencia.setText(null);
+        this.dispose();
+    }//GEN-LAST:event_btn_cancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -188,7 +229,6 @@ public class Frm_Produto_Util extends javax.swing.JFrame {
     private javax.swing.JButton btn_salvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel operacao;
     private javax.swing.JPanel pnl_botoes;
     private javax.swing.JPanel pnl_dados;
     private javax.swing.JPanel pnl_fundo;
