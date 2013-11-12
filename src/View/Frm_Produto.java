@@ -8,7 +8,10 @@ package View;
 import Controller.ProdutoEJB;
 import Model.Produto;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -109,8 +112,19 @@ public class Frm_Produto extends javax.swing.JFrame {
         });
 
         btn_visualisar.setText("Visualisar");
+        btn_visualisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_visualisarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Descrição:");
+
+        txt_consulta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_consultaKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_botoesLayout = new javax.swing.GroupLayout(pnl_botoes);
         pnl_botoes.setLayout(pnl_botoesLayout);
@@ -192,6 +206,14 @@ public class Frm_Produto extends javax.swing.JFrame {
         apagar();
     }//GEN-LAST:event_btn_apagarActionPerformed
 
+    private void txt_consultaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_consultaKeyReleased
+        findByDescricao();
+    }//GEN-LAST:event_txt_consultaKeyReleased
+
+    private void btn_visualisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_visualisarActionPerformed
+        visualisa();
+    }//GEN-LAST:event_btn_visualisarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -256,6 +278,23 @@ public class Frm_Produto extends javax.swing.JFrame {
     }
 
     private void apagar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        produto.setId(Long.parseLong(tb_produto.getValueAt(tb_produto.getSelectedRow(), 0).toString()));
+        produtoEJB.excluir(produto);
+    }
+
+    private void findByDescricao() {
+        TableRowSorter sorter = new TableRowSorter(tb_produto.getModel());
+        tb_produto.setRowSorter(sorter);
+        String texto = txt_consulta.getText();
+        try {
+            sorter.setRowFilter(RowFilter.regexFilter("(?i)" + texto));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Valor Não Encontrado!!!", "AVISO - Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void visualisa() {
+        produto.setId(Long.parseLong(tb_produto.getValueAt(tb_produto.getSelectedRow(), 0).toString()));
+        JOptionPane.showMessageDialog(null, produtoEJB.findByCodigo(produto));
     }
 }

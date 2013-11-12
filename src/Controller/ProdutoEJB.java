@@ -8,6 +8,7 @@ package Controller;
 import Model.Produto;
 import Util.Manager;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,21 +16,47 @@ import java.util.List;
  */
 public class ProdutoEJB extends Manager {
 
-    
     public void salvar(Produto produto) {
-        em.persist(produto);
+        try {
+            em.persist(produto);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
     }
 
     public void alterar(Produto produto) {
-        em.merge(produto);
+        try {
+            em.merge(produto);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
     }
 
     public void excluir(Produto produto) {
-        produto = em.find(Produto.class, produto.getId());
-        em.remove(produto);
+        try {
+            produto = em.find(Produto.class, produto.getId());
+            em.remove(produto);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }
 
-    public List<Produto> listar(){
-        return em.createNamedQuery("Produto.findByAll").getResultList();
+    public List<Produto> listar() {
+        try {
+            query = em.createNamedQuery("Produto.findByAll");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return query.getResultList();
+    }
+    public Object findByCodigo(Produto produto){
+        try {
+            query = em.createNamedQuery("Produto.findByCodproduto").setParameter("codigo", produto.getId());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return query.getSingleResult();
     }
 }

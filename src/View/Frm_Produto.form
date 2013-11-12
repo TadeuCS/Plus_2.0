@@ -208,6 +208,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Visualisar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_visualisarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
@@ -215,6 +218,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txt_consulta">
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_consultaKeyReleased"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

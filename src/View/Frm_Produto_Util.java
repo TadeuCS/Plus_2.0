@@ -166,20 +166,12 @@ public class Frm_Produto_Util extends javax.swing.JFrame {
             produto.setDescricao(txt_descricao.getText());
             produto.setReferencia(txt_referencia.getText());
             produto.setDisponivel("S");
-            try {
                 produtoEJB.salvar(produto);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            }
         }
         if (this.getTitle().compareTo("Alteração") == 0) {
             produto.setDescricao(txt_descricao.getText());
             produto.setReferencia(txt_referencia.getText());
-            try {
                 produtoEJB.alterar(produto);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            }
         }
     }//GEN-LAST:event_btn_salvarActionPerformed
 
