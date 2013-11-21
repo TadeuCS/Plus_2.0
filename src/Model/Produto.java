@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -21,12 +19,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "PRODUTO")
-@NamedQueries({
-    @NamedQuery(name = "Produto.findByAll", query = "SELECT p FROM Produto p"),
-    @NamedQuery(name = "Produto.findByCodproduto", query = "SELECT p FROM Produto p WHERE p.id = :codproduto"),
-    @NamedQuery(name = "Produto.findByDescricao", query = "SELECT p FROM Produto p WHERE p.descricao = :descricao"),
-    @NamedQuery(name = "Produto.findByReferencia", query = "SELECT p FROM Produto p WHERE p.referencia = :referencia"),
-    @NamedQuery(name = "Produto.findByDisponivel", query = "SELECT p FROM Produto p WHERE p.disponivel = :disponivel")})
 public class Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
