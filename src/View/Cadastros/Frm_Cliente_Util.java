@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package View;
+package View.Cadastros;
 
 /**
  *
@@ -124,7 +124,7 @@ public class Frm_Cliente_Util extends javax.swing.JFrame {
         jLabel6.setText("Telefone:");
 
         try {
-            txt_telefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
+            txt_telefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }

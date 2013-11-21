@@ -1,0 +1,2 @@
+localhost
+C:/Plus 1.0/src/BD/PLUSDB.FB

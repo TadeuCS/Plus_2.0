@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package View.Cadastros;
 
-import Controller.ProdutoEJB;
 import Model.Produto;
 import javax.swing.JOptionPane;
 
@@ -15,7 +14,6 @@ import javax.swing.JOptionPane;
  */
 public class Frm_Produto_Util extends javax.swing.JFrame {
 
-    ProdutoEJB produtoEJB = new ProdutoEJB();
     Produto produto;
 
     public Frm_Produto_Util() {
@@ -168,7 +166,7 @@ public class Frm_Produto_Util extends javax.swing.JFrame {
                 pro.setDescricao(txt_descricao.getText());
                 pro.setReferencia(txt_referencia.getText());
                 pro.setDisponivel("S");
-                produtoEJB.salvar(pro);
+                System.out.println("tenho que implementar o metodo de cadastrar produto");
                 JOptionPane.showMessageDialog(null, "Produto inserido com Sucesso!");
             }
         } catch (Exception e1) {
@@ -178,13 +176,13 @@ public class Frm_Produto_Util extends javax.swing.JFrame {
             if (this.getTitle().compareTo("Alteração") == 0) {
                 produto.setDescricao(txt_descricao.getText());
                 produto.setReferencia(txt_referencia.getText());
-                produtoEJB.alterar(produto);
+                System.out.println("tenho que implementar o metodo de alterar produto");
                 JOptionPane.showMessageDialog(null, "Produto Alterado com Sucesso!");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        produtoEJB.listar();
+        System.out.println("tenho que implementar o metodo de listarProdutos");
     }//GEN-LAST:event_btn_salvarActionPerformed
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
