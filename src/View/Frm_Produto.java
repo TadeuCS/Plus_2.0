@@ -10,7 +10,6 @@ import Model.Produto;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -26,7 +25,7 @@ public class Frm_Produto extends javax.swing.JFrame {
         initComponents();
         produtoEJB.listar();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

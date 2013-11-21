@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Model;
 
 import java.io.Serializable;
@@ -20,25 +19,26 @@ import javax.persistence.Table;
  *
  * @author Suporte4
  */
+@Entity
+@Table(name = "PRODUTO")
 @NamedQueries({
     @NamedQuery(name = "Produto.findByAll", query = "SELECT p FROM Produto p"),
     @NamedQuery(name = "Produto.findByCodproduto", query = "SELECT p FROM Produto p WHERE p.id = :codproduto"),
     @NamedQuery(name = "Produto.findByDescricao", query = "SELECT p FROM Produto p WHERE p.descricao = :descricao"),
     @NamedQuery(name = "Produto.findByReferencia", query = "SELECT p FROM Produto p WHERE p.referencia = :referencia"),
     @NamedQuery(name = "Produto.findByDisponivel", query = "SELECT p FROM Produto p WHERE p.disponivel = :disponivel")})
-@Entity
-@Table(name = "PRODUTO")
 public class Produto implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CODPRODUTO")
     private Long id;
-    @Column(name = "DESCRICAO",nullable = false)
+    @Column(name = "DESCRICAO", nullable = false)
     private String descricao;
-    @Column(name = "REFERENCIA",nullable = false)
+    @Column(name = "REFERENCIA", nullable = false)
     private String referencia;
-    @Column(name = "DISPONIVEL",nullable = false,length = 3)
+    @Column(name = "DISPONIVEL", nullable = false, length = 3)
     private String disponivel;
 
     public String getDescricao() {
@@ -97,5 +97,5 @@ public class Produto implements Serializable {
     public String toString() {
         return "Model.Produto[ id=" + id + " ]";
     }
-    
+
 }

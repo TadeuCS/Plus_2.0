@@ -16,11 +16,11 @@ import javax.swing.JOptionPane;
 public class Frm_Produto_Util extends javax.swing.JFrame {
 
     ProdutoEJB produtoEJB = new ProdutoEJB();
-    private Produto produto;
+    Produto produto;
 
     public Frm_Produto_Util() {
         initComponents();
-        if(this.getTitle().compareTo("Alteração")==0){
+        if (this.getTitle().compareTo("Alteração") == 0) {
             txt_descricao.setText(produto.getDescricao());
             txt_referencia.setText(produto.getReferencia());
         }
@@ -162,17 +162,29 @@ public class Frm_Produto_Util extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
-        if (this.getTitle().compareTo("Cadastro") == 0) {
-            produto.setDescricao(txt_descricao.getText());
-            produto.setReferencia(txt_referencia.getText());
-            produto.setDisponivel("S");
-                produtoEJB.salvar(produto);
+        try {
+            if (this.getTitle().compareTo("Cadastro") == 0) {
+                Produto pro = new Produto();
+                pro.setDescricao(txt_descricao.getText());
+                pro.setReferencia(txt_referencia.getText());
+                pro.setDisponivel("S");
+                produtoEJB.salvar(pro);
+                JOptionPane.showMessageDialog(null, "Produto inserido com Sucesso!");
+            }
+        } catch (Exception e1) {
+            JOptionPane.showMessageDialog(null, e1.getMessage());
         }
-        if (this.getTitle().compareTo("Alteração") == 0) {
-            produto.setDescricao(txt_descricao.getText());
-            produto.setReferencia(txt_referencia.getText());
+        try {
+            if (this.getTitle().compareTo("Alteração") == 0) {
+                produto.setDescricao(txt_descricao.getText());
+                produto.setReferencia(txt_referencia.getText());
                 produtoEJB.alterar(produto);
+                JOptionPane.showMessageDialog(null, "Produto Alterado com Sucesso!");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
+        produtoEJB.listar();
     }//GEN-LAST:event_btn_salvarActionPerformed
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
@@ -195,16 +207,21 @@ public class Frm_Produto_Util extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frm_Produto_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Produto_Util.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frm_Produto_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Produto_Util.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frm_Produto_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Produto_Util.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frm_Produto_Util.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Produto_Util.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

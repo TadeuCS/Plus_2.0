@@ -43,6 +43,9 @@ public class Frm_Locacao extends javax.swing.JFrame {
         txt_botoes = new javax.swing.JPanel();
         btn_finalizar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
+        btn_cancelar1 = new javax.swing.JButton();
+        btn_cancelar2 = new javax.swing.JButton();
+        btn_cancelar3 = new javax.swing.JButton();
         pnl_tabela = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_produtos = new javax.swing.JTable();
@@ -65,11 +68,11 @@ public class Frm_Locacao extends javax.swing.JFrame {
         txt_total.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_total.setText("R$ 100,00");
 
-        jLabel4.setText("Codigo:");
+        jLabel4.setText("Cliente:");
 
         txt_descricao.setEditable(false);
 
-        jLabel5.setText("Descrição:");
+        jLabel5.setText("Nome:");
 
         javax.swing.GroupLayout pnl_dadosLayout = new javax.swing.GroupLayout(pnl_dados);
         pnl_dados.setLayout(pnl_dadosLayout);
@@ -104,12 +107,13 @@ public class Frm_Locacao extends javax.swing.JFrame {
             pnl_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_dadosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnl_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_codCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnl_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txt_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txt_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnl_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_codCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(pnl_dadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txt_dataDevolucao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -128,12 +132,24 @@ public class Frm_Locacao extends javax.swing.JFrame {
 
         btn_cancelar.setText("Cancelar");
 
+        btn_cancelar1.setText("Novo");
+
+        btn_cancelar2.setText("Editar");
+
+        btn_cancelar3.setText("Apagar");
+
         javax.swing.GroupLayout txt_botoesLayout = new javax.swing.GroupLayout(txt_botoes);
         txt_botoes.setLayout(txt_botoesLayout);
         txt_botoesLayout.setHorizontalGroup(
             txt_botoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, txt_botoesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btn_cancelar1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_cancelar2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_cancelar3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_cancelar)
                 .addGap(18, 18, 18)
                 .addComponent(btn_finalizar)
@@ -145,7 +161,10 @@ public class Frm_Locacao extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(txt_botoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_finalizar)
-                    .addComponent(btn_cancelar))
+                    .addComponent(btn_cancelar)
+                    .addComponent(btn_cancelar1)
+                    .addComponent(btn_cancelar2)
+                    .addComponent(btn_cancelar3))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -266,6 +285,9 @@ public class Frm_Locacao extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cancelar;
+    private javax.swing.JButton btn_cancelar1;
+    private javax.swing.JButton btn_cancelar2;
+    private javax.swing.JButton btn_cancelar3;
     private javax.swing.JButton btn_finalizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

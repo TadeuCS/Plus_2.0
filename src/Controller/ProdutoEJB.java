@@ -18,7 +18,9 @@ public class ProdutoEJB extends Manager {
 
     public void salvar(Produto produto) {
         try {
+            em.getTransaction().begin();
             em.persist(produto);
+            em.getTransaction().commit();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -27,7 +29,9 @@ public class ProdutoEJB extends Manager {
 
     public void alterar(Produto produto) {
         try {
+            em.getTransaction().begin();
             em.merge(produto);
+            em.getTransaction().commit();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -36,8 +40,10 @@ public class ProdutoEJB extends Manager {
 
     public void excluir(Produto produto) {
         try {
+            em.getTransaction().begin();
             produto = em.find(Produto.class, produto.getId());
             em.remove(produto);
+            em.getTransaction().commit();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -45,7 +51,9 @@ public class ProdutoEJB extends Manager {
 
     public List<Produto> listar() {
         try {
+            em.getTransaction().begin();
             query = em.createNamedQuery("Produto.findByAll");
+            em.getTransaction().commit();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }

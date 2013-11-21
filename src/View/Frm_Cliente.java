@@ -77,12 +77,22 @@ public class Frm_Cliente extends javax.swing.JFrame {
         pnl_botoes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btn_novo.setText("Novo");
+        btn_novo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_novoActionPerformed(evt);
+            }
+        });
 
         btn_editar.setText("Editar");
 
         btn_apagar.setText("Apagar");
 
         btn_visualisar.setText("Visualisar");
+        btn_visualisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_visualisarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nome/Razão:");
 
@@ -156,6 +166,14 @@ public class Frm_Cliente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_novoActionPerformed
+
+    private void btn_visualisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_visualisarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_visualisarActionPerformed
 
     /**
      * @param args the command line arguments
