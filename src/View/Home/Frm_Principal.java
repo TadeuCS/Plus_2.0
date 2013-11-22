@@ -7,9 +7,9 @@ package View.Home;
 import Util.Conexao;
 import View.Relatorios.Rel_Empr;
 import View.Relatorios.Rel_Fluxo_trans;
-import View.Cadastros.Cad_Usuario;
-import View.Cadastros.Cad_Transportador;
-import View.Cadastros.Cad_Veiculo;
+import View.Cadastros.Frm_Usuario;
+import View.Cadastros.Frm_Transportador;
+import View.Cadastros.Frm_Veiculo;
 import View.Cadastros.Frm_Cliente;
 import View.Cadastros.Frm_Locacao;
 import View.Cadastros.Frm_Produto;
@@ -27,7 +27,7 @@ import javax.swing.JOptionPane;
 public class Frm_Principal extends javax.swing.JFrame {
 
     Conexao conexao = new Conexao();
-    TestaConexao testaConexao = new TestaConexao();
+    Frm_Conexao testaConexao = new Frm_Conexao();
 
     public Frm_Principal() {
 
@@ -548,17 +548,17 @@ public class Frm_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_mi_clienteActionPerformed
 
     private void mi_transportadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_transportadorActionPerformed
-        Cad_Transportador t = new Cad_Transportador();
+        Frm_Transportador t = new Frm_Transportador();
         t.setVisible(true);
     }//GEN-LAST:event_mi_transportadorActionPerformed
 
     private void mi_veiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_veiculoActionPerformed
-        Cad_Veiculo v = new Cad_Veiculo();
+        Frm_Veiculo v = new Frm_Veiculo();
         v.setVisible(true);
     }//GEN-LAST:event_mi_veiculoActionPerformed
 
     private void mi_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_usuarioActionPerformed
-        Cad_Usuario u = new Cad_Usuario();
+        Frm_Usuario u = new Frm_Usuario();
         u.setVisible(true);
     }//GEN-LAST:event_mi_usuarioActionPerformed
 

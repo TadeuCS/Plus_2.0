@@ -12,12 +12,12 @@ import java.util.logging.Logger;
  *
  * @author Tadeu
  */
-public class Cad_Transportador extends javax.swing.JFrame {
+public class Frm_Transportador extends javax.swing.JFrame {
 
     /**
      * Creates new form Cad_Transportador
      */
-    public Cad_Transportador() {
+    public Frm_Transportador() {
         initComponents();
     }
 
@@ -111,7 +111,7 @@ public class Cad_Transportador extends javax.swing.JFrame {
         }
 
         try {
-            txt_cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###.##")));
+            txt_cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -221,11 +221,10 @@ public class Cad_Transportador extends javax.swing.JFrame {
         jLabel3.setText("CEP:");
 
         try {
-            txt_cep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+            txt_cep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txt_cep.setText("");
         txt_cep.setToolTipText("");
 
         jLabel11.setText("Cidade:");
@@ -428,20 +427,20 @@ public class Cad_Transportador extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cad_Transportador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Transportador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cad_Transportador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Transportador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cad_Transportador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Transportador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cad_Transportador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Transportador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cad_Transportador().setVisible(true);
+                new Frm_Transportador().setVisible(true);
             }
         });
     }
