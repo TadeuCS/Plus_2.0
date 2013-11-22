@@ -4,6 +4,7 @@
  */
 package View.Home;
 
+import Util.Properties;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,7 +30,7 @@ public class Frm_Conexao extends javax.swing.JFrame {
     static String diretorio = "";
     static Statement st;
     static Connection con;
-    PrintWriter pw;
+    Util.Properties prop= new Properties();
 
     public Frm_Conexao() {
         initComponents();
@@ -117,23 +118,21 @@ public class Frm_Conexao extends javax.swing.JFrame {
 
     public void grava() {
         try {
-            pw = new PrintWriter(new FileWriter("C:/NCM-app/src/Util/config.txt", false));
             if (cbx_tipo.getSelectedIndex() != 0) {
-                pw.println(txt_ip.getText());
+                prop.altera("ip", txt_ip.getText());
             } else {
-                pw.println("localhost");
+                prop.altera("ip", "localhost");
             }
             if (txt_diretorio.getText().compareTo("") != 0) {
-                pw.println(txt_diretorio.getText());
+                prop.altera("diretorio", txt_diretorio.getText());
             }
+            prop.gravaPropriedades();
             JOptionPane.showMessageDialog(null, "Configurações salvas com Sucesso!");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "erro ao gravar arquivo! " + e.getMessage());
         }
-        pw.close();
+        
         try {
-            p.setVisible(false);
-//            p.start();
             p.setVisible(true);
             setVisible(false);
         } catch (Exception e) {
@@ -145,27 +144,16 @@ public class Frm_Conexao extends javax.swing.JFrame {
     }
 
     public void leArquivo() throws IOException {
-        File file = new File("C:/NCM-app/src/Util/config.txt");
-        FileReader fr = null;
-        try {
-            fr = new FileReader(file);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Frm_Conexao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        BufferedReader br = new BufferedReader(fr);
-
-        String linha = br.readLine();
-        txt_ip.setText(linha);
+        txt_ip.setText(prop.lerPropriedades("ip"));
         if (txt_ip.getText().compareTo("localhost") == 0) {
             cbx_tipo.setSelectedIndex(0);
             txt_ip.setText("");
         } else {
             cbx_tipo.setSelectedIndex(1);
         }
-        String linha2 = br.readLine();
-        txt_diretorio.setText(linha2);
-        txt_user.setText("SYSDBA");
-        txt_password.setText("masterkey");
+        txt_diretorio.setText(prop.lerPropriedades("diretorio"));
+        txt_user.setText(prop.lerPropriedades("user"));
+        txt_password.setText(prop.lerPropriedades("senha"));
     }
 
     @SuppressWarnings("unchecked")
@@ -208,7 +196,7 @@ public class Frm_Conexao extends javax.swing.JFrame {
 
         jLabel3.setText("Diretorio:");
 
-        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/buscar.gif"))); // NOI18N
+        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/buscar.gif"))); // NOI18N
         btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_buscarActionPerformed(evt);

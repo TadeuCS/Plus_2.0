@@ -6,6 +6,7 @@
 package View.Cadastros;
 
 import Util.Conexao;
+import Util.Properties;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -21,11 +22,11 @@ import javax.swing.table.TableRowSorter;
 public class Frm_Produto extends javax.swing.JFrame {
 
     Conexao conexao = new Conexao();
-    Connection con = conexao.getCon();
-    Statement st = conexao.getSt();
-    ResultSet rs = conexao.getRs();
+    Connection con;
+    Statement st;
+    ResultSet rs;
     DefaultTableModel model;
-
+    Properties prop= new Properties();
     public Frm_Produto() {
         initComponents();
         model = (DefaultTableModel) tb_produto.getModel();
@@ -38,7 +39,7 @@ public class Frm_Produto extends javax.swing.JFrame {
 
     public void listaProdutos() throws Exception {
         st = con.createStatement();
-//        ResultSet rs = st.executeQuery(conexao.findAllProdutos);
+        rs = st.executeQuery(prop.lerPropriedades("findByAllProdutos"));
         while (rs.next()) {
             String[] linha = new String[]{rs.getString("CODPROD"), rs.getString("DESCRICAO"), rs.getString("REFERENCIA"), rs.getString("DISPONIVEL")};
             model.addRow(linha);
@@ -90,9 +91,9 @@ public class Frm_Produto extends javax.swing.JFrame {
             tb_produto.getColumnModel().getColumn(2).setMinWidth(150);
             tb_produto.getColumnModel().getColumn(2).setPreferredWidth(150);
             tb_produto.getColumnModel().getColumn(2).setMaxWidth(150);
-            tb_produto.getColumnModel().getColumn(3).setMinWidth(80);
-            tb_produto.getColumnModel().getColumn(3).setPreferredWidth(80);
-            tb_produto.getColumnModel().getColumn(3).setMaxWidth(80);
+            tb_produto.getColumnModel().getColumn(3).setMinWidth(100);
+            tb_produto.getColumnModel().getColumn(3).setPreferredWidth(100);
+            tb_produto.getColumnModel().getColumn(3).setMaxWidth(100);
         }
 
         javax.swing.GroupLayout pnl_tabelaLayout = new javax.swing.GroupLayout(pnl_tabela);
