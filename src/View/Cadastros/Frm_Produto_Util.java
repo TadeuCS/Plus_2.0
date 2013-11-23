@@ -5,39 +5,42 @@
  */
 package View.Cadastros;
 
+import Controller.ProdutoEJB;
 import Model.Produto;
 import Util.Conexao;
+import Util.ConfigProperties;
+import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Suporte4
  */
 public class Frm_Produto_Util extends javax.swing.JFrame {
-
-    Produto produto;
-    Connection con;
+    ProdutoEJB produtoejb;
+    int qtdeProdutos = 0;
+    ConfigProperties prop = new ConfigProperties();
+    Conexao conexao = new Conexao();
+    Connection con = conexao.getCon();
     Statement st;
     ResultSet rs;
-    
+
     public Frm_Produto_Util() {
         initComponents();
-        try {
-            Conexao con= new Conexao();
-            con.conecta();
-        } catch (Exception e) {
-        }
         if (this.getTitle().compareTo("Alteração") == 0) {
-            txt_descricao.setText(produto.getDescricao());
-            txt_referencia.setText(produto.getReferencia());
+            txt_descricao.setText(produtoejb.getProduto().getDescricao());
+            txt_referencia.setText(produtoejb.getProduto().getReferencia());
         }
     }
 
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -172,11 +175,9 @@ public class Frm_Produto_Util extends javax.swing.JFrame {
     private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
         try {
             if (this.getTitle().compareTo("Cadastro") == 0) {
-                Produto pro = new Produto();
-                pro.setDescricao(txt_descricao.getText());
-                pro.setReferencia(txt_referencia.getText());
-                pro.setDisponivel("S");
-                System.out.println("tenho que implementar o metodo de cadastrar produto");
+                produtoejb.getProduto().setDescricao(txt_descricao.getText());
+                produtoejb.getProduto().setReferencia(txt_referencia.getText());
+                produtoejb.salva(txt_descricao.getText(), txt_referencia.getText());
                 JOptionPane.showMessageDialog(null, "Produto inserido com Sucesso!");
             }
         } catch (Exception e1) {
@@ -184,15 +185,13 @@ public class Frm_Produto_Util extends javax.swing.JFrame {
         }
         try {
             if (this.getTitle().compareTo("Alteração") == 0) {
-                produto.setDescricao(txt_descricao.getText());
-                produto.setReferencia(txt_referencia.getText());
+                
                 System.out.println("tenho que implementar o metodo de alterar produto");
                 JOptionPane.showMessageDialog(null, "Produto Alterado com Sucesso!");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        System.out.println("tenho que implementar o metodo de listarProdutos");
     }//GEN-LAST:event_btn_salvarActionPerformed
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed

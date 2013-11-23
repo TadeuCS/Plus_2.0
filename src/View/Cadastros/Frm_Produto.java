@@ -6,10 +6,15 @@
 package View.Cadastros;
 
 import Util.Conexao;
-import Util.Properties;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import Util.ConfigProperties;
+import java.io.IOException;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -20,15 +25,17 @@ import javax.swing.table.TableRowSorter;
  * @author Suporte4
  */
 public class Frm_Produto extends javax.swing.JFrame {
-
-    Conexao conexao = new Conexao();
-    Connection con;
-    Statement st;
-    ResultSet rs;
+    Conexao conexao= new Conexao();
+    Connection con=conexao.getCon();
+    Statement st= conexao.getSt();
+    ResultSet rs= conexao.getRs();
+    
     DefaultTableModel model;
-    Properties prop= new Properties();
+    ConfigProperties prop;
+
     public Frm_Produto() {
         initComponents();
+        prop = new ConfigProperties();
         model = (DefaultTableModel) tb_produto.getModel();
         try {
             listaProdutos();
@@ -37,12 +44,19 @@ public class Frm_Produto extends javax.swing.JFrame {
         }
     }
 
-    public void listaProdutos() throws Exception {
-        st = con.createStatement();
-        rs = st.executeQuery(prop.lerPropriedades("findByAllProdutos"));
-        while (rs.next()) {
-            String[] linha = new String[]{rs.getString("CODPROD"), rs.getString("DESCRICAO"), rs.getString("REFERENCIA"), rs.getString("DISPONIVEL")};
-            model.addRow(linha);
+    
+
+    public void listaProdutos() {
+        try {
+            rs = st.executeQuery(prop.ler("findAllProdutos", "queries.properties"));
+            while (rs.next()) {
+                String[] linha = new String[]{rs.getString("CODPROD"), rs.getString("DESCRICAO"), rs.getString("REFERENCIA"), rs.getString("DISPONIVEL")};
+                model.addRow(linha);
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Lista Vazia");
+        } catch (SQLException ex) {
+            System.out.println("Erro no Sql");
         }
     }
 

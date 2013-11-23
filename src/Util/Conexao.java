@@ -6,10 +6,6 @@
 
 package Util;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -28,19 +24,45 @@ public class Conexao {
     private Connection con;
     private Statement st;
     private ResultSet rs;
-    Util.Properties prop= new Properties();
+
+    public Statement getSt() {
+        return st;
+    }
+
+    public void setSt(Statement st) {
+        this.st = st;
+    }
+
+    public ResultSet getRs() {
+        return rs;
+    }
+
+    public void setRs(ResultSet rs) {
+        this.rs = rs;
+    }
+
+    public Connection getCon() {
+        return con;
+    }
+
+    public void setCon(Connection con) {
+        this.con = con;
+    }
+    
+    Util.ConfigProperties prop= new ConfigProperties();
 
     public Conexao() {
+        conecta();
     }
     
 
-    public void conecta() throws IOException, SQLException {
+    public void conecta(){
         try {
             Class.forName("org.firebirdsql.jdbc.FBDriver");
             con = DriverManager.getConnection(
-                    "jdbc:firebirdsql://" + prop.lerPropriedades("ip") + ":3050/" + prop.lerPropriedades("diretorio"),
-                    prop.lerPropriedades("user"),
-                    prop.lerPropriedades("senha"));
+                    "jdbc:firebirdsql://" + prop.ler("ip","config.properties") + ":3050/" + prop.ler("diretorio","config.properties"),
+                    prop.ler("user","config.properties"),
+                    prop.ler("senha","config.properties"));
             st = con.createStatement();
         } catch (ClassNotFoundException ex)//caso o driver não seja localizado  
         {

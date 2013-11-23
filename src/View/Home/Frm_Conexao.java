@@ -4,7 +4,7 @@
  */
 package View.Home;
 
-import Util.Properties;
+import Util.ConfigProperties;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,7 +22,7 @@ public class Frm_Conexao extends javax.swing.JFrame {
     static String diretorio = "";
     static Statement st;
     static Connection con;
-    Util.Properties prop= new Properties();
+    Util.ConfigProperties prop= new ConfigProperties();
 
     public Frm_Conexao() {
         initComponents();
@@ -109,16 +109,25 @@ public class Frm_Conexao extends javax.swing.JFrame {
     }
 
     public void grava() {
+        String ip;
+        String diretorio = null;
+        String user;
+        String senha;
         try {
             if (cbx_tipo.getSelectedIndex() != 0) {
-                prop.altera("ip", txt_ip.getText());
+                ip=txt_ip.getText();
             } else {
-                prop.altera("ip", "localhost");
+                ip="localhost";
             }
             if (txt_diretorio.getText().compareTo("") != 0) {
-                prop.altera("diretorio", txt_diretorio.getText());
+                diretorio=txt_diretorio.getText();
             }
-            prop.gravaPropriedades();
+            user=txt_user.getText();
+            senha=txt_password.getText();
+            prop.altera("ip",ip ,"config.properties");
+            prop.altera("diretorio", diretorio ,"config.properties");
+            prop.altera("user",user ,"config.properties");
+            prop.altera("senha",senha ,"config.properties");
             JOptionPane.showMessageDialog(null, "Configurações salvas com Sucesso!");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "erro ao gravar arquivo! " + e.getMessage());
@@ -136,16 +145,16 @@ public class Frm_Conexao extends javax.swing.JFrame {
     }
 
     public void leArquivo() throws IOException {
-        txt_ip.setText(prop.lerPropriedades("ip"));
+        txt_ip.setText(prop.ler("ip", "config.properties"));
         if (txt_ip.getText().compareTo("localhost") == 0) {
             cbx_tipo.setSelectedIndex(0);
             txt_ip.setText("");
         } else {
             cbx_tipo.setSelectedIndex(1);
         }
-        txt_diretorio.setText(prop.lerPropriedades("diretorio"));
-        txt_user.setText(prop.lerPropriedades("user"));
-        txt_password.setText(prop.lerPropriedades("senha"));
+        txt_diretorio.setText(prop.ler("diretorio","config.properties"));
+        txt_user.setText(prop.ler("user","config.properties"));
+        txt_password.setText(prop.ler("senha","config.properties"));
     }
 
     @SuppressWarnings("unchecked")

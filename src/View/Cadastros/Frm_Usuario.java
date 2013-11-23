@@ -4,7 +4,6 @@
  */
 package View.Cadastros;
 
-import Model.Usuario;
 
 /**
  *
