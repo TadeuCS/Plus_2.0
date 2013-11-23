@@ -13,10 +13,6 @@ import View.Cadastros.Frm_Veiculo;
 import View.Cadastros.Frm_Cliente;
 import View.Cadastros.Frm_Locacao;
 import View.Cadastros.Frm_Produto;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -26,14 +22,10 @@ import javax.swing.JOptionPane;
  */
 public class Frm_Principal extends javax.swing.JFrame {
 
-    Conexao conexao = new Conexao();
-    Frm_Conexao testaConexao = new Frm_Conexao();
 
     public Frm_Principal() {
 
         initComponents();
-        conexao.conecta();
-        
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         txt_usuario.requestFocus();
     }
@@ -516,7 +508,6 @@ public class Frm_Principal extends javax.swing.JFrame {
 
     private void btn_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sairActionPerformed
         try {
-            conexao.desconecta();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -578,7 +569,6 @@ public class Frm_Principal extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         try {
-            conexao.desconecta();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -589,7 +579,6 @@ public class Frm_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_entrarActionPerformed
 
     private void btn_conexaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_conexaoMouseClicked
-        testaConexao.setVisible(true);
     }//GEN-LAST:event_btn_conexaoMouseClicked
 
     private void btn_atalho_clientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_atalho_clientesMouseClicked

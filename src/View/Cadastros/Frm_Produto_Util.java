@@ -5,18 +5,11 @@
  */
 package View.Cadastros;
 
-import Controller.ProdutoEJB;
 import Model.Produto;
-import Util.Conexao;
 import Util.ConfigProperties;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Properties;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,23 +17,54 @@ import javax.swing.JOptionPane;
  * @author Suporte4
  */
 public class Frm_Produto_Util extends javax.swing.JFrame {
-    ProdutoEJB produtoejb;
-    int qtdeProdutos = 0;
-    ConfigProperties prop = new ConfigProperties();
-    Conexao conexao = new Conexao();
-    Connection con = conexao.getCon();
-    Statement st;
-    ResultSet rs;
 
+    ConfigProperties prop = new ConfigProperties();
+    Frm_Produto f= new Frm_Produto();
     public Frm_Produto_Util() {
         initComponents();
-        if (this.getTitle().compareTo("Alteração") == 0) {
-            txt_descricao.setText(produtoejb.getProduto().getDescricao());
-            txt_referencia.setText(produtoejb.getProduto().getReferencia());
+        if (getTitle().compareTo("Alteração") == 0) {
+            txt_descricao.setText(f.prod.getDescricao());
+            txt_referencia.setText(f.prod.getReferencia());
+        } else {
+            txt_descricao.setText(null);
+            txt_referencia.setText(null);
         }
     }
 
-    
+    public void salvar() {
+        try {
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("PlusPU");
+            EntityManager em = emf.createEntityManager();
+            Produto produto = new Produto();
+            produto.setDescricao(txt_descricao.getText());
+            produto.setReferencia(txt_referencia.getText());
+            produto.setDisponivel('S');
+            em.getTransaction().begin();
+            em.persist(produto);
+            em.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Produto Salvo com Sucesso");
+            txt_descricao.setText(null);
+            txt_referencia.setText(null);
+            txt_referencia.requestFocus();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Dados invalidos\n");
+            txt_referencia.requestFocus();
+        }
+    }
+
+    public void cadastrar() {
+        if (this.getTitle().compareTo("Cadastro") == 0) {
+            salvar();
+        }
+        try {
+            if (this.getTitle().compareTo("Alteração") == 0) {
+
+                System.out.println("tenho que implementar o metodo de alterar produto");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -173,30 +197,12 @@ public class Frm_Produto_Util extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
-        try {
-            if (this.getTitle().compareTo("Cadastro") == 0) {
-                produtoejb.getProduto().setDescricao(txt_descricao.getText());
-                produtoejb.getProduto().setReferencia(txt_referencia.getText());
-                produtoejb.salva(txt_descricao.getText(), txt_referencia.getText());
-                JOptionPane.showMessageDialog(null, "Produto inserido com Sucesso!");
-            }
-        } catch (Exception e1) {
-            JOptionPane.showMessageDialog(null, e1.getMessage());
-        }
-        try {
-            if (this.getTitle().compareTo("Alteração") == 0) {
-                
-                System.out.println("tenho que implementar o metodo de alterar produto");
-                JOptionPane.showMessageDialog(null, "Produto Alterado com Sucesso!");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        cadastrar();
     }//GEN-LAST:event_btn_salvarActionPerformed
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
-        txt_descricao.setText(null);
-        txt_referencia.setText(null);
+        Frm_Produto f = new Frm_Produto();
+        f.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_cancelarActionPerformed
 

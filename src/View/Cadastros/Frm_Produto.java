@@ -5,16 +5,11 @@
  */
 package View.Cadastros;
 
-import Util.Conexao;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import Model.Produto;
 import Util.ConfigProperties;
-import java.io.IOException;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -25,45 +20,23 @@ import javax.swing.table.TableRowSorter;
  * @author Suporte4
  */
 public class Frm_Produto extends javax.swing.JFrame {
-    Conexao conexao= new Conexao();
-    Connection con=conexao.getCon();
-    Statement st= conexao.getSt();
-    ResultSet rs= conexao.getRs();
-    
+
     DefaultTableModel model;
     ConfigProperties prop;
-
+    Produto prod= new Produto();
     public Frm_Produto() {
         initComponents();
         prop = new ConfigProperties();
-        model = (DefaultTableModel) tb_produto.getModel();
-        try {
-            listaProdutos();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-    }
-
-    
-
-    public void listaProdutos() {
-        try {
-            rs = st.executeQuery(prop.ler("findAllProdutos", "queries.properties"));
-            while (rs.next()) {
-                String[] linha = new String[]{rs.getString("CODPROD"), rs.getString("DESCRICAO"), rs.getString("REFERENCIA"), rs.getString("DISPONIVEL")};
-                model.addRow(linha);
-            }
-        } catch (NullPointerException e) {
-            System.out.println("Lista Vazia");
-        } catch (SQLException ex) {
-            System.out.println("Erro no Sql");
-        }
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
+        PlusPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("PlusPU").createEntityManager();
+        produtoQuery = java.beans.Beans.isDesignTime() ? null : PlusPUEntityManager.createQuery("SELECT p FROM Produto p");
+        produtoList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : produtoQuery.getResultList();
         pnl_fundo = new javax.swing.JPanel();
         pnl_tabela = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -81,22 +54,21 @@ public class Frm_Produto extends javax.swing.JFrame {
 
         pnl_tabela.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        tb_produto.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "CODIGO", "DESCRICAO", "REFERENCIA", "DISPONIVEL"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, produtoList, tb_produto);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${codproduto}"));
+        columnBinding.setColumnName("Codproduto");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${descricao}"));
+        columnBinding.setColumnName("Descricao");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${referencia}"));
+        columnBinding.setColumnName("Referencia");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${disponivel}"));
+        columnBinding.setColumnName("Disponivel");
+        columnBinding.setColumnClass(Character.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
         jScrollPane1.setViewportView(tb_produto);
         if (tb_produto.getColumnModel().getColumnCount() > 0) {
             tb_produto.getColumnModel().getColumn(0).setMinWidth(100);
@@ -223,6 +195,8 @@ public class Frm_Produto extends javax.swing.JFrame {
             .addComponent(pnl_fundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        bindingGroup.bind();
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -283,6 +257,7 @@ public class Frm_Produto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.persistence.EntityManager PlusPUEntityManager;
     private javax.swing.JButton btn_apagar;
     private javax.swing.JButton btn_editar;
     private javax.swing.JButton btn_novo;
@@ -292,22 +267,59 @@ public class Frm_Produto extends javax.swing.JFrame {
     private javax.swing.JPanel pnl_botoes;
     private javax.swing.JPanel pnl_fundo;
     private javax.swing.JPanel pnl_tabela;
+    private java.util.List<Model.Produto> produtoList;
+    private javax.persistence.Query produtoQuery;
     private javax.swing.JTable tb_produto;
     private javax.swing.JTextField txt_consulta;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
     private void novo() {
         Frm_Produto_Util frm = new Frm_Produto_Util();
         frm.setTitle("Cadastro");
         frm.setVisible(true);
+        setVisible(false);
     }
 
     private void alterar() {
-        System.out.println("altera o produto selecionado na tabela");
+        if (tb_produto.getSelectedRowCount() == 1) {
+            Frm_Produto_Util frm = new Frm_Produto_Util();
+            prod.setDescricao(tb_produto.getValueAt(tb_produto.getSelectedRow(), 1).toString());
+            prod.setReferencia(tb_produto.getValueAt(tb_produto.getSelectedRow(), 2).toString());
+            frm.setTitle("Alteração");
+            frm.setVisible(true);
+            setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione uma Linha!");
+        }
     }
-
+    
+    public void excluir(){
+        try{
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PlusPU");
+            EntityManager em = emf.createEntityManager();
+            Produto produto = new Produto();
+            produto.setCodproduto(Integer.parseInt(tb_produto.getValueAt(tb_produto.getSelectedRow(), 0).toString()));
+            produto.setDescricao(tb_produto.getValueAt(tb_produto.getSelectedRow(), 1).toString());
+            produto.setReferencia(tb_produto.getValueAt(tb_produto.getSelectedRow(), 2).toString());
+            produto.setDisponivel((char) tb_produto.getValueAt(tb_produto.getSelectedRow(), 3));
+            System.out.println(produto.getCodproduto());
+            em.getTransaction().begin();
+            em.remove(produto);
+            em.getTransaction().commit();
+            emf.close();
+            JOptionPane.showMessageDialog(null, "Produto excluido com Sucesso");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Dados invalidos\n");
+    }
+}
+        
     private void apagar() {
-        System.out.println("apagar o produto selecionado na tabela");
+        if (tb_produto.getSelectedRowCount() == 1) {
+            excluir();
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione uma Linha!");
+        }
     }
 
     private void findByDescricao() {
@@ -322,6 +334,10 @@ public class Frm_Produto extends javax.swing.JFrame {
     }
 
     private void visualisa() {
-        System.out.println("visualisa produto selecionado na tela");
+        JOptionPane.showMessageDialog(null,
+                "\nCodigo: "+tb_produto.getValueAt(tb_produto.getSelectedRow(),0).toString()+
+                "\nDescrição: "+ tb_produto.getValueAt(tb_produto.getSelectedRow(),1).toString()+
+                "\nReferência: "+ tb_produto.getValueAt(tb_produto.getSelectedRow(),2).toString()+
+                "\nDisponível: "+ tb_produto.getValueAt(tb_produto.getSelectedRow(),3).toString(),"Produto",JOptionPane.DEFAULT_OPTION);
     }
 }

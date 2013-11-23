@@ -1,41 +1,57 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package Model;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Tadeu
  */
 @Entity
-@Table(name = "USUARIO")
+@Table(name = "usuario")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
+    @NamedQuery(name = "Usuario.findByCodusuario", query = "SELECT u FROM Usuario u WHERE u.codusuario = :codusuario"),
+    @NamedQuery(name = "Usuario.findByUser", query = "SELECT u FROM Usuario u WHERE u.user = :user"),
+    @NamedQuery(name = "Usuario.findBySenha", query = "SELECT u FROM Usuario u WHERE u.senha = :senha")})
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "COD_USUARIO")
-    private Long id;
-    @Column(name = "USUARIO")
+    @Basic(optional = false)
+    @Column(name = "CODUSUARIO")
+    private Integer codusuario;
+    @Column(name = "USER")
     private String user;
     @Column(name = "SENHA")
-    private String password;
-    private int nivel;
+    private String senha;
 
-    public Long getId() {
-        return id;
+    public Usuario() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Usuario(Integer codusuario) {
+        this.codusuario = codusuario;
+    }
+
+    public Integer getCodusuario() {
+        return codusuario;
+    }
+
+    public void setCodusuario(Integer codusuario) {
+        this.codusuario = codusuario;
     }
 
     public String getUser() {
@@ -46,18 +62,18 @@ public class Usuario implements Serializable {
         this.user = user;
     }
 
-    public String getPassword() {
-        return password;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (codusuario != null ? codusuario.hashCode() : 0);
         return hash;
     }
 
@@ -68,7 +84,7 @@ public class Usuario implements Serializable {
             return false;
         }
         Usuario other = (Usuario) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.codusuario == null && other.codusuario != null) || (this.codusuario != null && !this.codusuario.equals(other.codusuario))) {
             return false;
         }
         return true;
@@ -76,7 +92,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "Model.NewEntity[ id=" + id + " ]";
+        return "Model.Usuario[ codusuario=" + codusuario + " ]";
     }
     
 }
