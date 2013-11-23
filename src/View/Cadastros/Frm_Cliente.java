@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package View.Cadastros;
 
 /**
@@ -84,8 +83,18 @@ public class Frm_Cliente extends javax.swing.JFrame {
         });
 
         btn_editar.setText("Editar");
+        btn_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editarActionPerformed(evt);
+            }
+        });
 
         btn_apagar.setText("Apagar");
+        btn_apagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_apagarActionPerformed(evt);
+            }
+        });
 
         btn_visualisar.setText("Visualisar");
         btn_visualisar.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +104,17 @@ public class Frm_Cliente extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Nome/Razão:");
+
+        txt_consulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_consultaActionPerformed(evt);
+            }
+        });
+        txt_consulta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_consultaKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_botoesLayout = new javax.swing.GroupLayout(pnl_botoes);
         pnl_botoes.setLayout(pnl_botoesLayout);
@@ -165,15 +185,37 @@ public class Frm_Cliente extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novoActionPerformed
-        // TODO add your handling code here:
+        Frm_Cliente_Util f = new Frm_Cliente_Util();
+        f.setTitle("Cadastro de Cliente");
+        f.setVisible(true);
+        
     }//GEN-LAST:event_btn_novoActionPerformed
 
     private void btn_visualisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_visualisarActionPerformed
-        // TODO add your handling code here:
+        System.out.println("implementar metodo de visualisar cliente");
     }//GEN-LAST:event_btn_visualisarActionPerformed
+
+    private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
+        Frm_Cliente_Util f = new Frm_Cliente_Util();
+        f.setTitle("Alteração de Cliente");
+        f.setVisible(true);
+    }//GEN-LAST:event_btn_editarActionPerformed
+
+    private void btn_apagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_apagarActionPerformed
+        System.out.println("implementar o metodo de excluir cliente");
+    }//GEN-LAST:event_btn_apagarActionPerformed
+
+    private void txt_consultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_consultaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_consultaActionPerformed
+
+    private void txt_consultaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_consultaKeyReleased
+        System.out.println("implementar o metodo de filtrar clientes na tabela");
+    }//GEN-LAST:event_txt_consultaKeyReleased
 
     /**
      * @param args the command line arguments

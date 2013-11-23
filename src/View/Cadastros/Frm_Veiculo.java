@@ -27,96 +27,58 @@ public class Frm_Veiculo extends javax.swing.JFrame {
     private void initComponents() {
 
         pnl_fundo = new javax.swing.JPanel();
-        pnl_dadosVeiculo = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        txt_placa = new javax.swing.JTextField();
-        txt_modelo = new javax.swing.JTextField();
-        txt_km = new javax.swing.JTextField();
-        jYearChooser1 = new com.toedter.calendar.JYearChooser();
         pnl_rodape = new javax.swing.JPanel();
         btn_inclusao = new javax.swing.JButton();
         btn_alteracao = new javax.swing.JButton();
-        btn_consulta = new javax.swing.JButton();
         btn_exclusao = new javax.swing.JButton();
         txt_operacao = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
-        btn_cad_cliente1 = new javax.swing.JLabel();
-        btn_cad_cliente = new javax.swing.JLabel();
+        btn_visualisar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Veículo");
         setResizable(false);
 
-        pnl_dadosVeiculo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados do Veículo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
-
-        jLabel1.setText("Placa:");
-
-        jLabel2.setText("Modelo:");
-
-        jLabel3.setText("Ano:");
-
-        jLabel4.setText("Km:");
-
-        javax.swing.GroupLayout pnl_dadosVeiculoLayout = new javax.swing.GroupLayout(pnl_dadosVeiculo);
-        pnl_dadosVeiculo.setLayout(pnl_dadosVeiculoLayout);
-        pnl_dadosVeiculoLayout.setHorizontalGroup(
-            pnl_dadosVeiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_dadosVeiculoLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txt_placa, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txt_modelo, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jYearChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txt_km, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        pnl_dadosVeiculoLayout.setVerticalGroup(
-            pnl_dadosVeiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_dadosVeiculoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnl_dadosVeiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_dadosVeiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(txt_placa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txt_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel4)
-                        .addComponent(txt_km, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jYearChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         pnl_rodape.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         btn_inclusao.setText("Inclusão");
+        btn_inclusao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_inclusaoActionPerformed(evt);
+            }
+        });
 
         btn_alteracao.setText("Alteração");
-
-        btn_consulta.setText("Consulta");
+        btn_alteracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_alteracaoActionPerformed(evt);
+            }
+        });
 
         btn_exclusao.setText("Exclusão");
+        btn_exclusao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_exclusaoActionPerformed(evt);
+            }
+        });
 
         txt_operacao.setEditable(false);
+        txt_operacao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_operacaoKeyReleased(evt);
+            }
+        });
 
         jLabel32.setText("Operação:");
 
-        btn_cad_cliente1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        btn_cad_cliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_visualisar.setText("Visualisar");
+        btn_visualisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_visualisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_rodapeLayout = new javax.swing.GroupLayout(pnl_rodape);
         pnl_rodape.setLayout(pnl_rodapeLayout);
@@ -129,16 +91,12 @@ public class Frm_Veiculo extends javax.swing.JFrame {
                 .addComponent(btn_alteracao)
                 .addGap(18, 18, 18)
                 .addComponent(btn_exclusao)
-                .addGap(18, 18, 18)
-                .addComponent(btn_consulta)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_cad_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_cad_cliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_visualisar)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel32)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txt_operacao, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_operacao, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnl_rodapeLayout.setVerticalGroup(
@@ -146,18 +104,26 @@ public class Frm_Veiculo extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_rodapeLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnl_rodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_cad_cliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_cad_cliente1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnl_rodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btn_exclusao)
-                        .addComponent(btn_consulta)
                         .addComponent(txt_operacao)
-                        .addComponent(jLabel32))
+                        .addComponent(jLabel32)
+                        .addComponent(btn_visualisar))
                     .addGroup(pnl_rodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btn_inclusao)
                         .addComponent(btn_alteracao)))
                 .addContainerGap())
         );
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Placa", "Modelo", "Ano", "Km"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout pnl_fundoLayout = new javax.swing.GroupLayout(pnl_fundo);
         pnl_fundo.setLayout(pnl_fundoLayout);
@@ -166,18 +132,18 @@ public class Frm_Veiculo extends javax.swing.JFrame {
             .addGroup(pnl_fundoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnl_fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnl_dadosVeiculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnl_rodape, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnl_rodape, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         pnl_fundoLayout.setVerticalGroup(
             pnl_fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_fundoLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_fundoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnl_dadosVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(pnl_rodape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -188,12 +154,36 @@ public class Frm_Veiculo extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl_fundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnl_fundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_inclusaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inclusaoActionPerformed
+        Frm_Veiculo_util f = new Frm_Veiculo_util();
+        f.setTitle("Cadastro de Veiculo");
+        f.setVisible(true);
+    }//GEN-LAST:event_btn_inclusaoActionPerformed
+
+    private void btn_alteracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alteracaoActionPerformed
+        Frm_Veiculo_util f = new Frm_Veiculo_util();
+        f.setTitle("Alteração de Veiculo");
+        f.setVisible(true);
+    }//GEN-LAST:event_btn_alteracaoActionPerformed
+
+    private void btn_exclusaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exclusaoActionPerformed
+        System.out.println("implementar o metodo de exclusão de veiculos");
+    }//GEN-LAST:event_btn_exclusaoActionPerformed
+
+    private void btn_visualisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_visualisarActionPerformed
+        System.out.println("implementar o metodo de visualisar");
+    }//GEN-LAST:event_btn_visualisarActionPerformed
+
+    private void txt_operacaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_operacaoKeyReleased
+        System.out.println("implementar o metodo de busca");
+    }//GEN-LAST:event_txt_operacaoKeyReleased
 
     /**
      * @param args the command line arguments
@@ -231,23 +221,14 @@ public class Frm_Veiculo extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_alteracao;
-    private javax.swing.JLabel btn_cad_cliente;
-    private javax.swing.JLabel btn_cad_cliente1;
-    private javax.swing.JButton btn_consulta;
     private javax.swing.JButton btn_exclusao;
     private javax.swing.JButton btn_inclusao;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton btn_visualisar;
     private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel4;
-    private com.toedter.calendar.JYearChooser jYearChooser1;
-    private javax.swing.JPanel pnl_dadosVeiculo;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JPanel pnl_fundo;
     private javax.swing.JPanel pnl_rodape;
-    private javax.swing.JTextField txt_km;
-    private javax.swing.JTextField txt_modelo;
     private javax.swing.JTextField txt_operacao;
-    private javax.swing.JTextField txt_placa;
     // End of variables declaration//GEN-END:variables
 }

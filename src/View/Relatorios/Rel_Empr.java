@@ -4,6 +4,9 @@
  */
 package View.Relatorios;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  *
  * @author Tadeu
@@ -97,8 +100,18 @@ public class Rel_Empr extends javax.swing.JFrame {
         pnl_rodape.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         btn_gerar.setText("Gerar");
+        btn_gerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_gerarActionPerformed(evt);
+            }
+        });
 
         btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnl_rodapeLayout = new javax.swing.GroupLayout(pnl_rodape);
         pnl_rodape.setLayout(pnl_rodapeLayout);
@@ -156,6 +169,15 @@ public class Rel_Empr extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+        setVisible(false);
+        
+    }//GEN-LAST:event_btn_cancelarActionPerformed
+
+    private void btn_gerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gerarActionPerformed
+        System.out.println("implementar o metodo de gerar relatorio de emprestimos");
+    }//GEN-LAST:event_btn_gerarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -8,7 +8,7 @@ import Util.Conexao;
 import View.Relatorios.Rel_Empr;
 import View.Relatorios.Rel_Fluxo_trans;
 import View.Cadastros.Frm_Usuario;
-import View.Cadastros.Frm_Transportador;
+import View.Cadastros.Frm_Transportador_util;
 import View.Cadastros.Frm_Veiculo;
 import View.Cadastros.Frm_Cliente;
 import View.Cadastros.Frm_Locacao;
@@ -32,15 +32,10 @@ public class Frm_Principal extends javax.swing.JFrame {
     public Frm_Principal() {
 
         initComponents();
-        try {
-            conexao.conecta();
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-//        antesdeLogar();
+        conexao.conecta();
+        
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        txt_usuario.requestFocus();
     }
 
     public void antesdeLogar() {
@@ -55,7 +50,8 @@ public class Frm_Principal extends javax.swing.JFrame {
     }
 
     public void entrar() {
-        System.out.println("implementar o metodo de login");
+        pnl_login.setVisible(false);
+        txt_userLogado.setText("Administrador");
     }
 
     @SuppressWarnings("unchecked")
@@ -548,7 +544,7 @@ public class Frm_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_mi_clienteActionPerformed
 
     private void mi_transportadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_transportadorActionPerformed
-        Frm_Transportador t = new Frm_Transportador();
+        Frm_Transportador_util t = new Frm_Transportador_util();
         t.setVisible(true);
     }//GEN-LAST:event_mi_transportadorActionPerformed
 

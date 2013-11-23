@@ -303,7 +303,7 @@ public class Frm_Produto extends javax.swing.JFrame {
     }
 
     private void alterar() {
-        System.out.println("altera o prdouto selecionado na tabela");
+        System.out.println("altera o produto selecionado na tabela");
     }
 
     private void apagar() {
@@ -322,6 +322,6 @@ public class Frm_Produto extends javax.swing.JFrame {
     }
 
     private void visualisa() {
-        System.out.println("visualisa model na tela");
+        System.out.println("visualisa produto selecionado na tela");
     }
 }

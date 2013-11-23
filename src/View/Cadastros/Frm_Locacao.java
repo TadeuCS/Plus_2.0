@@ -71,14 +71,39 @@ public class Frm_Locacao extends javax.swing.JFrame {
         txt_botoes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btn_finalizar.setText("Finalizar");
+        btn_finalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_finalizarActionPerformed(evt);
+            }
+        });
 
         btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
 
         btn_cancelar1.setText("Novo");
+        btn_cancelar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelar1ActionPerformed(evt);
+            }
+        });
 
         btn_cancelar2.setText("Editar");
+        btn_cancelar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelar2ActionPerformed(evt);
+            }
+        });
 
         btn_cancelar3.setText("Apagar");
+        btn_cancelar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelar3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout txt_botoesLayout = new javax.swing.GroupLayout(txt_botoes);
         txt_botoes.setLayout(txt_botoesLayout);
@@ -371,7 +396,28 @@ public class Frm_Locacao extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_cancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelar1ActionPerformed
+        System.out.println("implementar o metodo de incluir produto a locação");
+    }//GEN-LAST:event_btn_cancelar1ActionPerformed
+
+    private void btn_cancelar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelar2ActionPerformed
+        System.out.println("implementar o metodo de alterar produto da locação");
+    }//GEN-LAST:event_btn_cancelar2ActionPerformed
+
+    private void btn_cancelar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelar3ActionPerformed
+        System.out.println("implementar o metodo de excluir produto da locação");
+    }//GEN-LAST:event_btn_cancelar3ActionPerformed
+
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+        setVisible(false);
+    }//GEN-LAST:event_btn_cancelarActionPerformed
+
+    private void btn_finalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_finalizarActionPerformed
+        System.out.println("implementar o metodo de validar campos e salvar locação");
+    }//GEN-LAST:event_btn_finalizarActionPerformed
 
     /**
      * @param args the command line arguments
